@@ -1,0 +1,40 @@
+version: '3'
+services:
+  app:
+    build: .docker
+    ports:
+      - 80:80
+    volumes:
+      - ./webSite:/var/www/html
+      - .docker/000-default.conf:/etc/apache2/sites-enabled/000-default.conf:ro
+    environment:
+      TZ: Europe/Istanbul
+
+  db:
+    image: mysql:5.7.27
+    ports:
+      - 3306:3306
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    volumes:
+      - ./db:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: fatih
+      MYSQL_USER: fatih
+      MYSQL_PASSWORD: password
+      TZ: Europe/Istanbul
+
+  cache:
+    image: redis
+    ports:
+      - 6379:6379
+    volumes:
+      - ./db:/var/lib/mysql
+    environment:
+      REDIS_PASSWORD: password
+      TZ: Europe/Istanbul
+
+
+volumes:
+  mysql:
