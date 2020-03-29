@@ -1,4 +1,4 @@
-# docker-nginx-php
+# Docker-Apache-Mysql-Redis-Php
 Debian 10 üzerinden **Apache2** ve **php** kurulumtur. __docker-composer.yml__ dosyasında **MySql** ve **Redis** de ekli. kullanılmayacağı durumda kaldırılabilir.
 
 <br />
